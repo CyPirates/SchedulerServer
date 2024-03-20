@@ -1,0 +1,22 @@
+spring:
+    Profiles:
+        Include: oauth2, gcs
+    Datasource:
+        Driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME}
+        Url: ${DATASOURCE_URL}
+        Username: ${DATASOURCE_USERNAME}
+        Password: ${DATASOURCE_PASSWORD}
+
+    jpa:
+        open-in-view: false
+        hibernate:
+            ddl-auto: ${JPA_DDL_AUTO}
+        show-sql: false
+        properties:
+            hibernate:
+                format_sql: true
+        defer-datasource-initialization: true
+
+server:
+    port: ${SERVER_PORT}
+
