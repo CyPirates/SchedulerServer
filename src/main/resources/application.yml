@@ -1,6 +1,4 @@
 spring:
-    Profiles:
-        Include: oauth2, gcs
     Datasource:
         Driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME}
         Url: ${DATASOURCE_URL}
@@ -19,4 +17,3 @@ spring:
 
 server:
     port: ${SERVER_PORT}
-
