@@ -63,11 +63,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Docker Build
-      run: |
-        docker build -t scheduler .
-        docker tag scheduler ${{ secrets.DOCKER_USERNAME}}/scheduler:${ GITHUB_SHA::7 }
-        docker push ${{ secrets.DOCKER_USERNAME }}/scheduler:${GITHUB_SHA::7}
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        platforms: linux/amd64
+        push: true
+        tags: ${{ steps.docker_meta.outputs.tags }}
+        labels: ${{ steps.docker_meta.outputs.labels }}
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
