@@ -33,12 +33,12 @@ jobs:
       with:
         files: ./src/main/resources/application.yml
       env:
-        spring.datasource.driver-class-name: ${{ DATASOURCE_DRIVER_CLASS_NAME }}
-        spring.datasource.url: ${{ DATASOURCE_URL }}
-        spring.datasource.username: ${{ DATASOURCE_USERNAME }}
-        spring.datasource.password: ${{ DATASOURCE_PASSWORD }}
+        spring.datasource.driver-class-name: ${{ secrets.DATASOURCE_DRIVER_CLASS_NAME }}
+        spring.datasource.url: ${{ secrets.DATASOURCE_URL }}
+        spring.datasource.username: ${{ secrets.DATASOURCE_USERNAME }}
+        spring.datasource.password: ${{ secrets.DATASOURCE_PASSWORD }}
         
-        spring.jpa.hibernate.ddl-auto: ${{ JPA_DDL_AUTO }}
+        spring.jpa.hibernate.ddl-auto: ${{ secrets.JPA_DDL_AUTO }}
 
     # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
@@ -47,6 +47,18 @@ jobs:
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
+
+    - name: Docker Hub Login
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Docker Build
+      run: |
+        docker build -t scheduler .
+        docker tag scheduler ${{ secrets.DOCKER_USERNAME}}/scheduler:${ GITHUB_SHA::7 }
+        docker push ${{ secrets.DOCKER_USERNAME }}/scheduler:${GITHUB_SHA::7}
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
