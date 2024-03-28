@@ -40,7 +40,7 @@ jobs:
         
         spring.jpa.hibernate.ddl-auto: ${{ secrets.JPA_DDL_AUTO }}
 
-        server.port: ${{ SERVER_PORT }}
+        server.port: ${{ secrets.SERVER_PORT }}
 
     # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
