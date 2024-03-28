@@ -87,10 +87,10 @@ jobs:
           sudo docker tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:test scheduler
 
           server="scheduler-server"
-          if [ "$(docker ps -f name=$server)" ]
+          if [ "$(sudo docker ps -f name=$server)" ]
             then
-              docker stop $server
-              docker rm $server
+              sudo docker stop $server
+              sudo docker rm $server
           fi
             
-            docker run -d --name $server -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} scheduler
+            sudo docker run -d --name $server -p ${{ secrets.SERVER_PORT }}:${{ secrets.SERVER_PORT }} scheduler
