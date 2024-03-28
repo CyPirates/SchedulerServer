@@ -15,15 +15,15 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@MappedSuperclass
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BaseEntity {
+public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @CreatedDate
     @Column(updatable = false)

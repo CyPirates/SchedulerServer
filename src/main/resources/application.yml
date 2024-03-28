@@ -1,9 +1,9 @@
 spring:
-    Datasource:
-        Driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME}
-        Url: ${DATASOURCE_URL}
-        Username: ${DATASOURCE_USERNAME}
-        Password: ${DATASOURCE_PASSWORD}
+    datasource:
+        driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME}
+        url: ${DATASOURCE_URL}
+        username: ${DATASOURCE_USERNAME}
+        password: ${DATASOURCE_PASSWORD}
 
     jpa:
         open-in-view: false
