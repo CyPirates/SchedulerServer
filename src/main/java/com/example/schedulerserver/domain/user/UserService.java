@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    public SiteUser create(String user_id, String name, String password){
+    public SiteUser create(String userid, String name, String password){
         SiteUser user = new SiteUser();
-        user.setUser_id(user_id);
+        user.setUserid(userid);
         user.setName(name);
         user.setPassword(passwordEncoder.encode(password));
         this.userRepository.save(user);
