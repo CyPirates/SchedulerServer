@@ -3,6 +3,7 @@ package com.example.schedulerserver.domain.user;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 
@@ -32,6 +33,15 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
         return "login_form";
+    }
+    @PostMapping("/freinds/{userid}")
+    @ResponseBody(HttpStatus.OK)
+    public String sendFreindshipRequest(@Valid @PathVariable("userid") String userid) throws Exception{
+        if(!userService.isExistUser(userid)){
+            throw new Exception("사용자가 존재하지 않습니다.");
+        }
+        friendshipService.createFreindship(userid);
+        return "친구추가 성공";
     }
 
 }

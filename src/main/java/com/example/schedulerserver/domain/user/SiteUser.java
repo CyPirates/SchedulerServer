@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter @Setter
 @Entity
 public class SiteUser {
@@ -17,4 +20,7 @@ public class SiteUser {
     private String name;
 
     private String password;
+
+    @OneToMany(mappedBy = "siteUser")
+    private List<FriendShip> friendshipList = new ArrayList<>();
 }
