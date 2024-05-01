@@ -1,5 +1,6 @@
 package com.example.schedulerserver.domain.map.service;
 
+import com.example.schedulerserver.domain.map.dto.LocationDto;
 import com.example.schedulerserver.domain.map.entity.Location;
 import com.example.schedulerserver.domain.map.repository.LocationRepository;
 import jakarta.transaction.Transactional;
@@ -22,5 +23,13 @@ public class LocationService {
         location.setLongitude(longitude);
         location.setLatitude(latitude);
         return locationRepository.save(location);
+    }
+
+    public LocationDto.Response getLocationDto(Location location) {
+        return LocationDto.Response.builder()
+                .updateDate(location.getUpdateDate().toString())
+                .longitude(location.getLongitude())
+                .latitude(location.getLatitude())
+                .build();
     }
 }
