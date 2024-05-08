@@ -1,8 +1,8 @@
-package com.example.schedulerserver.domain.user;
+package com.example.schedulerserver.domain.user.repository;
 
+import com.example.schedulerserver.domain.user.entity.SiteUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<SiteUser,Long> {

@@ -1,4 +1,4 @@
-package com.example.schedulerserver.domain.user;
+package com.example.schedulerserver.domain.user.entity;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;

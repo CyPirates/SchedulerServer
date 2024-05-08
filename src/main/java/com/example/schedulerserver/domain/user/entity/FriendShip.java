@@ -1,10 +1,11 @@
-package com.example.schedulerserver.domain.user;
+package com.example.schedulerserver.domain.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -14,7 +15,7 @@ public class FriendShip {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userid")
+    @JoinColumn(name = "site_user_id")
     private SiteUser siteUser;
 
     private String userId;
@@ -25,9 +26,9 @@ public class FriendShip {
     private boolean isForm;
 
     @Setter
-    private Long couterpartId;
+    private Long counterpartId;
 
-    public void acceptFriendshipRequest(){
+    public void acceptFriendshipRequest() {
         status = FriendShipStatus.ACCEPT;
-
+    }
 }

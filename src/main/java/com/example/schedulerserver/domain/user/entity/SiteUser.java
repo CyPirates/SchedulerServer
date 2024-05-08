@@ -1,5 +1,6 @@
-package com.example.schedulerserver.domain.user;
+package com.example.schedulerserver.domain.user.entity;
 
+import com.example.schedulerserver.domain.user.entity.FriendShip;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.List;
 public class SiteUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "site_user_id")
     private Long id;
 
     @Column(unique = true)

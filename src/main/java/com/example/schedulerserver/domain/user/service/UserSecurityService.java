@@ -1,5 +1,8 @@
-package com.example.schedulerserver.domain.user;
+package com.example.schedulerserver.domain.user.service;
 
+import com.example.schedulerserver.domain.user.entity.UserRole;
+import com.example.schedulerserver.domain.user.entity.SiteUser;
+import com.example.schedulerserver.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
